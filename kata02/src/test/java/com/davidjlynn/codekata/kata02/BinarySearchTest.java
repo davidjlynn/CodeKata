@@ -1,6 +1,6 @@
 package com.davidjlynn.codekata.kata02;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 

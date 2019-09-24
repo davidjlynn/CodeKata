@@ -1,8 +1,6 @@
 package com.davidjlynn.codekata.kata02;
 
 import java.util.Arrays;
-import lombok.Getter;
-import lombok.Setter;
 
 public class BinarySearchTree {
   public static int chop(int searchValue, int[] searchList) {
@@ -44,7 +42,7 @@ public class BinarySearchTree {
 
   /**
    * A small function to find the target given the bounds.
-
+   *
    * @return the target next comparison.
    */
   private static int indexer(int items) {
@@ -55,8 +53,6 @@ public class BinarySearchTree {
     }
   }
 
-  @Getter
-  @Setter
   private static class TreeStructure {
     private TreeStructure leftTree;
     private int currentValue;
