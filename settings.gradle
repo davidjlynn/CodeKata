@@ -17,4 +17,5 @@ include 'services:webservice'
 
 rootProject.name = 'CodeKata'
 include 'kata02'
+include 'kata06'
 
