@@ -15,61 +15,65 @@ import java.util.stream.Stream;
 
 public class AnagramFinder {
 
-    public List<String> loadWordList() throws URISyntaxException, IOException {
-        URL wordlistUrl = Resources.getResource("wordlist.txt");
-        Path path = Paths.get(wordlistUrl.toURI());
+  public List<String> loadWordList() throws URISyntaxException, IOException {
+    URL wordlistUrl = Resources.getResource("wordlist.txt");
+    Path path = Paths.get(wordlistUrl.toURI());
 
-        Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1);
-        List<String> strings = lines.collect(Collectors.toList());
-        lines.close();
+    Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1);
+    List<String> strings = lines.collect(Collectors.toList());
+    lines.close();
 
-        return strings;
-    }
+    return strings;
+  }
 
-    public Map<String, List<String>> buildIntoMap(List<String> words) {
-        return words.stream()
-                .collect(Collectors.groupingBy(word -> {
-                    String lower = word.toLowerCase();
-                    char[] sortedChar = lower.toCharArray();
-                    Arrays.sort(sortedChar);
-                    String sortedString = new String(sortedChar);
-                    return sortedString;
+  public Map<String, List<String>> buildIntoMap(List<String> words) {
+    return words.stream()
+        .collect(
+            Collectors.groupingBy(
+                word -> {
+                  String lower = word.toLowerCase();
+                  char[] sortedChar = lower.toCharArray();
+                  Arrays.sort(sortedChar);
+                  String sortedString = new String(sortedChar);
+                  return sortedString;
                 }));
-    }
+  }
 
-    public List<List<String>> findAnagrams() throws URISyntaxException, IOException {
-        List<String> wordList = loadWordList();
+  public List<List<String>> findAnagrams() throws URISyntaxException, IOException {
+    List<String> wordList = loadWordList();
 
-        // Sanitize *eyerole* -> Remove capitals.
-        wordList = wordList.stream().map(String::toLowerCase).distinct().collect(Collectors.toList());
+    // Sanitize *eyerole* -> Remove capitals.
+    wordList = wordList.stream().map(String::toLowerCase).distinct().collect(Collectors.toList());
 
-        Map<String, List<String>> wordMap = buildIntoMap(wordList);
+    Map<String, List<String>> wordMap = buildIntoMap(wordList);
 
-        // Strip out occurences of only 1 word.
-        List<List<String>> anagramLists = wordMap.values().stream()
-                .filter(anagramSet -> anagramSet.size() > 1)
-                .collect(Collectors.toList());
+    // Strip out occurences of only 1 word.
+    List<List<String>> anagramLists =
+        wordMap.values().stream()
+            .filter(anagramSet -> anagramSet.size() > 1)
+            .collect(Collectors.toList());
 
-        return anagramLists;
-    }
+    return anagramLists;
+  }
 
-    public void findMostAnagrams() throws URISyntaxException, IOException {
-        List<List<String>> anagramLists = findAnagrams();
+  public void findMostAnagrams() throws URISyntaxException, IOException {
+    List<List<String>> anagramLists = findAnagrams();
 
-        List<String> anagrams = anagramLists.stream().max(Comparator.comparingInt(List::size)).get();
+    List<String> anagrams = anagramLists.stream().max(Comparator.comparingInt(List::size)).get();
 
-        System.out.println(anagrams.size());
-        System.out.println(anagrams.toString());
-    }
+    System.out.println(anagrams.size());
+    System.out.println(anagrams.toString());
+  }
 
+  public void findLongestAnagrams() throws URISyntaxException, IOException {
+    List<List<String>> anagramLists = findAnagrams();
 
-    public void findLongestAnagrams() throws URISyntaxException, IOException {
-        List<List<String>> anagramLists = findAnagrams();
+    List<String> anagrams =
+        anagramLists.stream()
+            .max(Comparator.comparingInt((anagramList -> anagramList.get(0).length())))
+            .get();
 
-        List<String> anagrams = anagramLists.stream().max(Comparator.comparingInt((anagramList -> anagramList.get(0).length()))).get();
-
-        System.out.println(anagrams.size());
-        System.out.println(anagrams.toString());
-    }
-
+    System.out.println(anagrams.size());
+    System.out.println(anagrams.toString());
+  }
 }
