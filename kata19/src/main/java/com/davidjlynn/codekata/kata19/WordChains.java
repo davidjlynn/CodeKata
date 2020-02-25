@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Queue;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,7 +25,7 @@ public class WordChains {
     }
 
     // Read Text File, removing words of incorrect size.
-    List<String> wordTexts = readFromInputStream("words_alpha.txt", startWordText.length());
+    Set<String> wordTexts = readFromInputStream("words_alpha.txt", startWordText.length());
 
     // Turn into word graph
     List<Word> words = wordTexts.stream().map(Word::new).collect(Collectors.toList());
@@ -80,13 +81,18 @@ public class WordChains {
     return Optional.empty();
   }
 
-  private List<String> readFromInputStream(String filename, int wordLength)
+  private Set<String> readFromInputStream(String filename, int wordLength)
       throws IOException, URISyntaxException {
     Path path = Paths.get(getClass().getClassLoader().getResource(filename).toURI());
 
     Stream<String> lines = Files.lines(path);
 
-    List<String> data = lines.filter(s -> s.length() == wordLength).collect(Collectors.toList());
+    Set<String> data =
+        lines
+            .filter(s -> s.length() == wordLength)
+            .map(String::toLowerCase)
+            .map(s -> s.replaceAll("[^a-zA-Z0-9]", ""))
+            .collect(Collectors.toSet());
 
     lines.close();
 
