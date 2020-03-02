@@ -8,16 +8,14 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.10/625fc0055674dff70dbc76efa36d0f2c89b04a24/lombok-1.18.10.jar" />
         </processorPath>
-        <module name="code-kata.kata19.main" />
+        <module name="code-kata.kata20.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="code-kata.kata02.main" target="11" />
-      <module name="code-kata.kata02.test" target="11" />
-      <module name="code-kata.kata06.main" target="11" />
-      <module name="code-kata.kata06.test" target="11" />
-      <module name="code-kata.kata19.main" target="11" />
-      <module name="code-kata.kata19.test" target="11" />
+      <module name="CodeKata.kata02.main" target="11" />
+      <module name="CodeKata.kata02.test" target="11" />
+      <module name="CodeKata.kata06.main" target="11" />
+      <module name="CodeKata.kata06.test" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
