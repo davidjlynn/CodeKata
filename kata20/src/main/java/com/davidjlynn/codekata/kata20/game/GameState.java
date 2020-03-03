@@ -14,7 +14,7 @@ public class GameState {
 
   private final Integer CARDS_PER_SUIT = CardNumber.values().length;
 
-  private CardPile deck = new CardPile();
+  private Deck deck = new Deck();
 
   private CardPile pile1 = new CardPile();
   private CardPile pile2 = new CardPile();
@@ -34,10 +34,10 @@ public class GameState {
           new AbstractMap.SimpleEntry<>(6, pile6),
           new AbstractMap.SimpleEntry<>(7, pile7));
 
-  private List<Card> finishedPile1 = new ArrayList<>();
-  private List<Card> finishedPile2 = new ArrayList<>();
-  private List<Card> finishedPile3 = new ArrayList<>();
-  private List<Card> finishedPile4 = new ArrayList<>();
+  private FinishedPile finishedPile1 = new FinishedPile();
+  private FinishedPile finishedPile2 = new FinishedPile();
+  private FinishedPile finishedPile3 = new FinishedPile();
+  private FinishedPile finishedPile4 = new FinishedPile();
 
   public GameState(Queue<Card> cardDeck) {
     // Deal deck
@@ -52,10 +52,41 @@ public class GameState {
   }
 
   public Boolean hasWon() {
-    return finishedPile1.size() == CARDS_PER_SUIT
-        && finishedPile2.size() == CARDS_PER_SUIT
-        && finishedPile3.size() == CARDS_PER_SUIT
-        && finishedPile4.size() == CARDS_PER_SUIT;
+    return finishedPile1.hasAllCards()
+        && finishedPile2.hasAllCards()
+        && finishedPile3.hasAllCards()
+        && finishedPile4.hasAllCards();
+  }
+
+  public void moveFromDeckToPile(CardPile cardPile) {
+    cardPile.getFlippedCards().add(deck.getFlippedCards().get(deck.getFlippedCards().size()));
+  }
+
+  public void moveFromPileToFinished(CardPile cardPile, FinishedPile finishedPile) {
+    finishedPile.cards.add(cardPile.getFlippedCards().get(cardPile.getFlippedCards().size()));
+  }
+
+  @Getter
+  private class FinishedPile {
+    List<Card> cards = new ArrayList<>();
+
+    Boolean hasAllCards() {
+      return cards.size() == CARDS_PER_SUIT;
+    }
+
+    Boolean cardCanBeAdded(Card card) {
+      if (cards.size() == 0) {
+        return card.getCardNumber() == CardNumber.ACE;
+      }
+      Card leadCard = cards.get(cards.size() - 1);
+      return card.canBeAddedToCardFinishing(leadCard);
+    }
+  }
+
+  @Getter
+  private class Deck {
+    List<Card> unflippedCards = new ArrayList<>();
+    List<Card> flippedCards = new ArrayList<>();
   }
 
   @Getter
