@@ -1,6 +1,5 @@
 package com.davidjlynn.codekata.kata20.cardmodel;
 
-import com.davidjlynn.codekata.kata20.cardmodel.CardColour;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

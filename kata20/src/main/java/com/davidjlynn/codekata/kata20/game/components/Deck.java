@@ -4,7 +4,6 @@ import com.davidjlynn.codekata.kata20.cardmodel.Card;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import javax.swing.text.html.Option;
 import lombok.Getter;
 
 @Getter
@@ -12,7 +11,7 @@ public class Deck {
   private List<Card> unflippedCards = new ArrayList<>();
   private List<Card> flippedCards = new ArrayList<>();
 
-  public boolean noMoreCards(){
+  public boolean noMoreCards() {
     return unflippedCards.size() + flippedCards.size() == 0;
   }
 
@@ -21,7 +20,7 @@ public class Deck {
       Card card = unflippedCards.get(unflippedCards.size() - 1);
       unflippedCards.remove(unflippedCards.size() - 1);
       flippedCards.add(card);
-    }else if (flippedCards.size() !=0){
+    } else if (flippedCards.size() != 0) {
       unflippedCards = flippedCards;
       flippedCards = new ArrayList<>();
       flipCard();
@@ -31,11 +30,17 @@ public class Deck {
   public Card getCard() {
     Card card = peekCard().orElseThrow(() -> new IllegalStateException());
     flippedCards.remove(flippedCards.size() - 1);
+
+    // We could have used the first card, try and replace it.
+    if (flippedCards.isEmpty()){
+      flipCard();
+    }
+
     return card;
   }
 
   public Optional<Card> peekCard() {
-    if (flippedCards.size() == 0){
+    if (flippedCards.size() == 0) {
       return Optional.empty();
     }
     Card card = flippedCards.get(flippedCards.size() - 1);

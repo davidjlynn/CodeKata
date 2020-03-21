@@ -6,7 +6,6 @@ import com.davidjlynn.codekata.kata20.cardmodel.CardSuit;
 import com.davidjlynn.codekata.kata20.game.GameState;
 import com.davidjlynn.codekata.kata20.game.PlayGame;
 import com.davidjlynn.codekata.kata20.game.PlayMode;
-import com.davidjlynn.codekata.kata20.game.components.Move;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -18,13 +17,11 @@ public class Klondike {
 
   public void runGame() {
 
-    GameState gameState = setupGame();
+    for (int i = 0; i < 100; i++) {
+      GameState gameState = setupGame();
 
-    GameState completedGame = new PlayGame().play(gameState, PlayMode.DUMB_SEQUENTIAL);
-
-    System.out.println("Guess what! Did you win... " + completedGame.hasWon());
-
-
+      GameState completedGame = new PlayGame().play(gameState, PlayMode.ORDER_BY_DIRECTION);
+    }
   }
 
   private GameState setupGame() {

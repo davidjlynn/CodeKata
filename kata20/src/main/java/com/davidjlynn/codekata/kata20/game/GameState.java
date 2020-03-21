@@ -136,9 +136,24 @@ public class GameState {
   }
 
   private Boolean isValidMove(Move move) {
+    if (move.sourceEqualsDestination()) {
+      return false;
+    }
+
+    if (!move.validPiles()) {
+      return false;
+    }
+
+    if (!move.canBeMovedMultipleCards()) {
+      return false;
+    }
+
     Card card;
     switch (move.getSource().getPileType()) {
       case DECK:
+        if (deck.noMoreCards()) {
+          return false;
+        }
         card = deck.peekCard().orElseThrow(IllegalStateException::new);
         break;
       case PLAY_PILE:

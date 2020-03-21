@@ -53,8 +53,8 @@ public class PlayPile {
   }
 
   public Card getCard() {
-    Card card = peekCard(flippedCards.size() - 1);
-    flippedCards.remove(flippedCards.size() - 1);
+    Card card = peekCard(0);
+    flippedCards.remove(card);
 
     if (flippedCards.size() == 0 && unflippedCards.size() > 0){
       flipCard();
@@ -63,7 +63,7 @@ public class PlayPile {
   }
 
   public Card peekCard(Integer cardNumber) {
-    Card card = flippedCards.get(cardNumber);
+    Card card = flippedCards.get(flippedCards.size() - 1 - cardNumber);
     return card;
   }
 }

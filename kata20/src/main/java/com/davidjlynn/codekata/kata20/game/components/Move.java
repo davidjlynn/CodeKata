@@ -13,4 +13,19 @@ import lombok.Setter;
 public class Move {
   @NonNull private MoveSource source;
   private MoveDestination destination;
+
+  public Boolean sourceEqualsDestination() {
+    return source.getPileType() == destination.getPileType()
+        && source.getPileNumber().equals(destination.getPileNumber());
+  }
+
+  public Boolean validPiles() {
+    return source.getPileType().getValidDestinationPiles().contains(destination.getPileType());
+  }
+
+  public Boolean canBeMovedMultipleCards() {
+    return source.getCardNumber() == null
+        || source.getCardNumber() == 0
+        || destination.getPileType().getSupportsAddingMultipleCards();
+  }
 }

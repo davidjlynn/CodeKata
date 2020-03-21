@@ -20,11 +20,11 @@ public class FinishedPile {
   }
 
   public Boolean cardCanBeAdded(Card card) {
-    if (cards.size() == 0) {
+    Optional<Card> leadCard = peekCard();
+    if (leadCard.isEmpty()) {
       return card.getCardNumber() == CardNumber.ACE;
     }
-    Card leadCard = cards.get(cards.size() - 1);
-    return card.canBeAddedToCardFinishing(leadCard);
+    return card.canBeAddedToCardFinishing(leadCard.get());
   }
 
   public void addCard(Card card) {
@@ -36,7 +36,7 @@ public class FinishedPile {
 
   public Card getCard() {
     Card card = peekCard().orElseThrow(() -> new IllegalStateException("Whoops"));
-    cards.remove(cards.size() - 1);
+    cards.remove(card);
     return card;
   }
 
