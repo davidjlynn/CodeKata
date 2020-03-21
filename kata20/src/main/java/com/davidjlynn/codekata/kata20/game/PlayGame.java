@@ -13,11 +13,21 @@ public class PlayGame {
   public static final String ANSI_RED = "\u001B[31m";
   public static final String ANSI_GREEN = "\u001B[32m";
 
-  public GameState play(GameState gameState, PlayMode playMode) {
+  public GameResult play(GameState gameState, PlayMode playMode) {
     Function<List<Move>, Move> moveFunction;
     switch (playMode) {
       case DUMB_SEQUENTIAL:
         moveFunction = (moveList) -> moveList.get(0);
+        break;
+      case DUMB_SEQUENTIAL_NO_BACKTRACK:
+        moveFunction =
+            (moveList) -> {
+              List<Move> filteredMoveList =
+                  moveList.stream()
+                      .filter(move -> move.getSource().getPileType() != PileEnum.FINISHED_PILE)
+                      .collect(Collectors.toList());
+              return filteredMoveList.get(0);
+            };
         break;
       case RANDOM_MOVE:
         moveFunction = (moveList) -> moveList.get(new Random().nextInt(moveList.size()));
@@ -50,7 +60,9 @@ public class PlayGame {
         throw new IllegalStateException("Invalid Game State.");
     }
 
-    return playUsingStrategy(gameState, moveFunction);
+    GameState completedGame = playUsingStrategy(gameState, moveFunction);
+
+    return new GameResult(completedGame);
   }
 
   private GameState playUsingStrategy(
@@ -58,15 +70,9 @@ public class PlayGame {
     // Limit the number of moves
     for (int i = 0; i < 1500; i++) {
 
-      if (gameState.hasWon()) {
-        System.out.println(ANSI_GREEN + "Took " + (i + 1) + " attempts" + ANSI_RESET + " to win");
-        break;
-      }
-
       List<Move> moveList = gameState.getPossibleMoves();
 
-      if (moveList.size() == 0) {
-        System.out.println(ANSI_RED + "No more moves left!" + ANSI_RESET);
+      if (gameState.getGameStatus() != GameStatus.MOVES_LEFT) {
         break;
       }
 
@@ -74,7 +80,24 @@ public class PlayGame {
 
       gameState.doMove(move);
     }
-    System.out.println(ANSI_RED + "Ran out of attempts!" + ANSI_RESET);
+
+    /*    switch (gameState.getGameStatus()) {
+      case WON:
+        System.out.println(
+            ANSI_GREEN
+                + "Took "
+                + gameState.getNumberOfMoves()
+                + " attempts"
+                + ANSI_RESET
+                + " to win");
+        break;
+      case MOVES_LEFT:
+        System.out.println(ANSI_RED + "Ran out of attempts!" + ANSI_RESET);
+        break;
+      case OUT_OF_MOVES:
+        System.out.println(ANSI_RED + "No more moves left!" + ANSI_RESET);
+        break;
+    }*/
 
     return gameState;
   }

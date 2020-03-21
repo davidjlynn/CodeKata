@@ -32,7 +32,7 @@ public class Deck {
     flippedCards.remove(flippedCards.size() - 1);
 
     // We could have used the first card, try and replace it.
-    if (flippedCards.isEmpty()){
+    if (flippedCards.isEmpty()) {
       flipCard();
     }
 

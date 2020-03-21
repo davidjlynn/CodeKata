@@ -16,8 +16,12 @@ import java.util.Optional;
 import java.util.Queue;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lombok.Getter;
 
+@Getter
 public class GameState {
+
+  private Integer numberOfMoves = 0;
 
   private Deck deck = new Deck();
 
@@ -51,6 +55,8 @@ public class GameState {
           new AbstractMap.SimpleEntry<>(3, finishedPile3),
           new AbstractMap.SimpleEntry<>(4, finishedPile4));
 
+  private List<Move> currentMoveList;
+
   public GameState(Queue<Card> cardDeck) {
     // Deal deck
     IntStream.rangeClosed(1, 7)
@@ -69,6 +75,16 @@ public class GameState {
         && finishedPile2.hasAllCards()
         && finishedPile3.hasAllCards()
         && finishedPile4.hasAllCards();
+  }
+
+  public GameStatus getGameStatus() {
+    if (hasWon()) {
+      return GameStatus.WON;
+    } else if (currentMoveList.size() == 0) {
+      return GameStatus.OUT_OF_MOVES;
+    } else {
+      return GameStatus.MOVES_LEFT;
+    }
   }
 
   public void moveFromDeckToPile(PlayPile playPile) {
@@ -131,6 +147,8 @@ public class GameState {
     if (!deck.noMoreCards()) {
       moves.add(new Move(new MoveSource(PileEnum.FLIP_CARD)));
     }
+
+    currentMoveList = moves;
 
     return moves;
   }
@@ -225,5 +243,6 @@ public class GameState {
       default:
         throw new IllegalStateException("I fooked it");
     }
+    numberOfMoves++;
   }
 }

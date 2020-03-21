@@ -13,9 +13,6 @@ public enum PileEnum {
   PLAY_PILE,
   FINISHED_PILE;
 
-  private List<PileEnum> validDestinationPiles;
-  private Boolean supportsAddingMultipleCards;
-
   static {
     FLIP_CARD.validDestinationPiles = Collections.emptyList();
     DECK.validDestinationPiles = List.of(PLAY_PILE, FINISHED_PILE);
@@ -27,4 +24,7 @@ public enum PileEnum {
     PLAY_PILE.supportsAddingMultipleCards = Boolean.TRUE;
     FINISHED_PILE.supportsAddingMultipleCards = Boolean.FALSE;
   }
+
+  private List<PileEnum> validDestinationPiles;
+  private Boolean supportsAddingMultipleCards;
 }

@@ -18,10 +18,6 @@ public enum CardNumber {
   QUEEN,
   KING;
 
-  private CardNumber nextCardNumber;
-
-  private CardNumber previousCardNumber;
-
   static {
     ACE.nextCardNumber = TWO;
     TWO.nextCardNumber = THREE;
@@ -51,4 +47,7 @@ public enum CardNumber {
     QUEEN.previousCardNumber = JACK;
     KING.previousCardNumber = QUEEN;
   }
+
+  private CardNumber nextCardNumber;
+  private CardNumber previousCardNumber;
 }

@@ -13,7 +13,6 @@ public class PlayPile {
   private List<Card> unflippedCards = new ArrayList<>();
   private List<Card> flippedCards = new ArrayList<>();
 
-
   public void flipCard() {
     Card card = unflippedCards.get(unflippedCards.size() - 1);
     unflippedCards.remove(unflippedCards.size() - 1);
@@ -56,7 +55,7 @@ public class PlayPile {
     Card card = peekCard(0);
     flippedCards.remove(card);
 
-    if (flippedCards.size() == 0 && unflippedCards.size() > 0){
+    if (flippedCards.size() == 0 && unflippedCards.size() > 0) {
       flipCard();
     }
     return card;
