@@ -20,7 +20,7 @@ public class Klondike {
     for (int i = 0; i < 100; i++) {
       GameState gameState = setupGame();
 
-      GameState completedGame = new PlayGame().play(gameState, PlayMode.ORDER_BY_DIRECTION);
+      GameState completedGame = new PlayGame().play(gameState, PlayMode.RANDOM_MOVE_NO_BACKTRACK);
     }
   }
 
