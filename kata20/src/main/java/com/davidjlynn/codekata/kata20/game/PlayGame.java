@@ -56,8 +56,26 @@ public class PlayGame {
               return moveList.get(0);
             };
         break;
+      case ORDER_BY_DIRECTION_NO_BACKTRACK:
+        moveFunction =
+            (moveList) -> {
+              // ORDER MOVES
+              // 1. To finished pile from Deck
+              // 2. To finished pile from Play
+              // 3. Random play piles
+              // 4. Deck to play
+              // 5. Flip
+              // 6. Finished
+              List<Move> filteredMoveList =
+                  moveList.stream()
+                      .filter(move -> move.getSource().getPileType() != PileEnum.FINISHED_PILE)
+                      .sorted((o1, o2) -> toDirected(o1).compareTo(toDirected(o2)))
+                      .collect(Collectors.toList());
+              return filteredMoveList.get(0);
+            };
+        break;
       default:
-        throw new IllegalStateException("Invalid Game State.");
+        throw new IllegalStateException("Invalid Play Mode.");
     }
 
     GameState completedGame = playUsingStrategy(gameState, moveFunction);

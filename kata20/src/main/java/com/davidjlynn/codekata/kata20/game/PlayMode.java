@@ -10,7 +10,8 @@ public enum PlayMode {
   DUMB_SEQUENTIAL_NO_BACKTRACK(false),
   RANDOM_MOVE(false),
   RANDOM_MOVE_NO_BACKTRACK(true),
-  ORDER_BY_DIRECTION(false);
+  ORDER_BY_DIRECTION(false),
+  ORDER_BY_DIRECTION_NO_BACKTRACK(true);
 
   private Boolean runGame;
 }
