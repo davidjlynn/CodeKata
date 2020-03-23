@@ -62,7 +62,6 @@ public class PlayPile {
   }
 
   public Card peekCard(Integer cardNumber) {
-    Card card = flippedCards.get(flippedCards.size() - 1 - cardNumber);
-    return card;
+    return flippedCards.get(flippedCards.size() - 1 - cardNumber);
   }
 }

@@ -24,6 +24,10 @@ import java.util.stream.IntStream;
 public class Klondike {
 
   public void runGame() {
+    Arrays.stream(PlayMode.values()).filter(PlayMode::getRunGame).forEach(this::runGame);
+  }
+
+  public void runGame(PlayMode playMode) {
 
     // Run games
     List<GameResult> gameResults =
@@ -31,7 +35,7 @@ public class Klondike {
             .mapToObj(
                 i -> {
                   GameState gameState = setupGame();
-                  return new PlayGame().play(gameState, PlayMode.RANDOM_MOVE_NO_BACKTRACK);
+                  return new PlayGame().play(gameState, playMode);
                 })
             .collect(Collectors.toList());
 
@@ -42,22 +46,28 @@ public class Klondike {
                 Collectors.groupingBy(
                     (gameResult) -> gameResult.getGameStatus() == GameStatus.WON));
 
+    int wonGames = ((winLossGames.get(true) != null) ? winLossGames.get(true).size() : 0);
+    int lostGames = ((winLossGames.get(false) != null) ? winLossGames.get(false).size() : 0);
+    double winRate = (((double) wonGames / (double) gameResults.size()) * 100);
     System.out.println(
-        ANSI_GREEN
+        "For game type "
+            + playMode.name()
+            + ": "
+            + ANSI_GREEN
             + "Games won is "
-            + winLossGames.get(true).size()
+            + wonGames
             + ". "
             + ANSI_RED
             + "Games lost is "
-            + winLossGames.get(false).size()
+            + lostGames
             + "."
             + ANSI_RESET
             + " This means a "
-            + (((double) winLossGames.get(true).size() / (double) gameResults.size()) * 100)
+            + winRate
             + "% win rate.");
 
-    if (winLossGames.get(true).size() > 0) {
-      Double averageNumberOfMoves =
+    if (wonGames > 0) {
+      double averageNumberOfMoves =
           winLossGames.get(true).stream()
               .mapToInt(GameResult::getNumberOfMoves)
               .average()

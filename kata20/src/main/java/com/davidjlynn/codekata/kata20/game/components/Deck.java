@@ -28,7 +28,7 @@ public class Deck {
   }
 
   public Card getCard() {
-    Card card = peekCard().orElseThrow(() -> new IllegalStateException());
+    Card card = peekCard().orElseThrow(IllegalStateException::new);
     flippedCards.remove(flippedCards.size() - 1);
 
     // We could have used the first card, try and replace it.
