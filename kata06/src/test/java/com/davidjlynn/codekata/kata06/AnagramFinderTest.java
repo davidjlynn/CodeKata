@@ -32,7 +32,7 @@ public class AnagramFinderTest {
     // CHECK RESULTS
     Assert.assertNotNull(stringListMap);
     Assert.assertNotNull(stringListMap.keySet());
-    Assert.assertEquals(0, stringListMap.keySet().size());
+    Assert.assertEquals(295640, stringListMap.keySet().size());
   }
 
   @Test
@@ -42,7 +42,7 @@ public class AnagramFinderTest {
 
     // CHECK RESULTS
     Assert.assertNotNull(anagramLists);
-    Assert.assertEquals(0, anagramLists.size());
+    Assert.assertEquals(25027, anagramLists.size());
   }
 
   @Test
