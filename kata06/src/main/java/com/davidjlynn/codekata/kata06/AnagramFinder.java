@@ -34,8 +34,7 @@ public class AnagramFinder {
                   String lower = word.toLowerCase();
                   char[] sortedChar = lower.toCharArray();
                   Arrays.sort(sortedChar);
-                  String sortedString = new String(sortedChar);
-                  return sortedString;
+                  return new String(sortedChar);
                 }));
   }
 
@@ -47,13 +46,10 @@ public class AnagramFinder {
 
     Map<String, List<String>> wordMap = buildIntoMap(wordList);
 
-    // Strip out occurences of only 1 word.
-    List<List<String>> anagramLists =
-        wordMap.values().stream()
-            .filter(anagramSet -> anagramSet.size() > 1)
-            .collect(Collectors.toList());
-
-    return anagramLists;
+    // Strip out occurences of only 1 word
+    return wordMap.values().stream()
+        .filter(anagramSet -> anagramSet.size() > 1)
+        .collect(Collectors.toList());
   }
 
   public void findMostAnagrams() throws URISyntaxException, IOException {

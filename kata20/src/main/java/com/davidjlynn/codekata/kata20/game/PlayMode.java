@@ -13,5 +13,5 @@ public enum PlayMode {
   ORDER_BY_DIRECTION(false),
   ORDER_BY_DIRECTION_NO_BACKTRACK(true);
 
-  private Boolean runGame;
+  private final Boolean runGame;
 }

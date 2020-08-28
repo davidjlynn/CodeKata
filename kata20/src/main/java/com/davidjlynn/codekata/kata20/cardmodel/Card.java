@@ -7,8 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Card {
 
-  private CardNumber cardNumber;
-  private CardSuit cardSuit;
+  private final CardNumber cardNumber;
+  private final CardSuit cardSuit;
 
   public Boolean canBeAddedToCardFinishing(Card card) {
     return card.cardNumber.getNextCardNumber() == cardNumber && card.cardSuit == cardSuit;

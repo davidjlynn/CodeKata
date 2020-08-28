@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class MoveSource {
-  private PileEnum pileType;
+  private final PileEnum pileType;
   private Integer pileNumber;
   private Integer cardNumber;
 

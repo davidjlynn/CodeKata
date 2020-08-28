@@ -6,6 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class MoveDestination {
-  private PileEnum pileType;
-  private Integer pileNumber;
+  private final PileEnum pileType;
+  private final Integer pileNumber;
 }

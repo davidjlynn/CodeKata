@@ -23,17 +23,17 @@ public class GameState {
 
   private Integer numberOfMoves = 0;
 
-  private Deck deck = new Deck();
+  private final Deck deck = new Deck();
 
-  private PlayPile pile1 = new PlayPile();
-  private PlayPile pile2 = new PlayPile();
-  private PlayPile pile3 = new PlayPile();
-  private PlayPile pile4 = new PlayPile();
-  private PlayPile pile5 = new PlayPile();
-  private PlayPile pile6 = new PlayPile();
-  private PlayPile pile7 = new PlayPile();
+  private final PlayPile pile1 = new PlayPile();
+  private final PlayPile pile2 = new PlayPile();
+  private final PlayPile pile3 = new PlayPile();
+  private final PlayPile pile4 = new PlayPile();
+  private final PlayPile pile5 = new PlayPile();
+  private final PlayPile pile6 = new PlayPile();
+  private final PlayPile pile7 = new PlayPile();
 
-  private Map<Integer, PlayPile> cardPileMap =
+  private final Map<Integer, PlayPile> cardPileMap =
       Map.ofEntries(
           new AbstractMap.SimpleEntry<>(1, pile1),
           new AbstractMap.SimpleEntry<>(2, pile2),
@@ -43,12 +43,12 @@ public class GameState {
           new AbstractMap.SimpleEntry<>(6, pile6),
           new AbstractMap.SimpleEntry<>(7, pile7));
 
-  private FinishedPile finishedPile1 = new FinishedPile();
-  private FinishedPile finishedPile2 = new FinishedPile();
-  private FinishedPile finishedPile3 = new FinishedPile();
-  private FinishedPile finishedPile4 = new FinishedPile();
+  private final FinishedPile finishedPile1 = new FinishedPile();
+  private final FinishedPile finishedPile2 = new FinishedPile();
+  private final FinishedPile finishedPile3 = new FinishedPile();
+  private final FinishedPile finishedPile4 = new FinishedPile();
 
-  private Map<Integer, FinishedPile> finishPileMap =
+  private final Map<Integer, FinishedPile> finishPileMap =
       Map.ofEntries(
           new AbstractMap.SimpleEntry<>(1, finishedPile1),
           new AbstractMap.SimpleEntry<>(2, finishedPile2),

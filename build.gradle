@@ -32,5 +32,5 @@ dependencies {
 */
 
 ext {
-    lombokVersion = '1.18.10'
+    lombokVersion = '1.18.12'
 }

@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Word {
 
-  @NonNull private String wordText;
+  @NonNull private final String wordText;
 
   protected List<Word> siblings = new ArrayList<>();
 

@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public class GameResult {
-  private GameStatus gameStatus;
-  private Integer numberOfMoves;
+  private final GameStatus gameStatus;
+  private final Integer numberOfMoves;
 
   public GameResult(GameState gameState) {
     this.gameStatus = gameState.getGameStatus();

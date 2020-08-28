@@ -12,7 +12,7 @@ public class WordPath {
     return wordPath.get(wordPath.size() - 1);
   }
 
-  private List<Word> wordPath;
+  private final List<Word> wordPath;
 
   public WordPath(Word word) {
     this.wordPath = Collections.singletonList(word);

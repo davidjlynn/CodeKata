@@ -2,6 +2,7 @@ package com.davidjlynn.codekata.kata20.game;
 
 import com.davidjlynn.codekata.kata20.game.components.Move;
 import com.davidjlynn.codekata.kata20.game.components.PileEnum;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
@@ -52,7 +53,7 @@ public class PlayGame {
               // 4. Deck to play
               // 5. Flip
               // 6. Finished
-              moveList.sort((o1, o2) -> toDirected(o1).compareTo(toDirected(o2)));
+              moveList.sort(Comparator.comparing(this::toDirected));
               return moveList.get(0);
             };
         break;
@@ -69,7 +70,7 @@ public class PlayGame {
               List<Move> filteredMoveList =
                   moveList.stream()
                       .filter(move -> move.getSource().getPileType() != PileEnum.FINISHED_PILE)
-                      .sorted((o1, o2) -> toDirected(o1).compareTo(toDirected(o2)))
+                      .sorted(Comparator.comparing(this::toDirected))
                       .collect(Collectors.toList());
               return filteredMoveList.get(0);
             };

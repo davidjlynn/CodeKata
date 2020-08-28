@@ -1,8 +1,10 @@
 package com.davidjlynn.codekata.kata20;
 
-public class Test {
+import org.junit.jupiter.api.Test;
 
-  @org.junit.Test
+public class KlondikeTest {
+
+  @Test
   public void test() {
     Klondike game = new Klondike();
     game.runGame();

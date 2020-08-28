@@ -5,8 +5,9 @@ import java.net.URISyntaxException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WordChainsTest {
 
@@ -22,7 +23,7 @@ public class WordChainsTest {
     System.out.println("Time taken to run word chain: " + Duration.between(start, end));
     System.out.println("The words: " + words.toString());
 
-    Assert.assertEquals(4, words.size());
+    assertEquals(4, words.size());
   }
 
   @Test
@@ -37,7 +38,7 @@ public class WordChainsTest {
     System.out.println("Time taken to run word chain: " + Duration.between(start, end));
     System.out.println("The words: " + words.toString());
 
-    Assert.assertEquals(4, words.size());
+    assertEquals(4, words.size());
   }
 
   @Test
@@ -52,7 +53,7 @@ public class WordChainsTest {
     System.out.println("Time taken to run word chain: " + Duration.between(start, end));
     System.out.println("The words: " + words.toString());
 
-    Assert.assertEquals(4, words.size());
+    assertEquals(4, words.size());
   }
 
   @Test
@@ -67,6 +68,6 @@ public class WordChainsTest {
     System.out.println("Time taken to run word chain: " + Duration.between(start, end));
     System.out.println("The words: " + words.toString());
 
-    Assert.assertEquals(7, words.size());
+    assertEquals(7, words.size());
   }
 }

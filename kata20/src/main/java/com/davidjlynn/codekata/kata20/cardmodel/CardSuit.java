@@ -11,5 +11,5 @@ public enum CardSuit {
   SPADE(CardColour.BLACK),
   DIAMOND(CardColour.RED);
 
-  private CardColour cardColour;
+  private final CardColour cardColour;
 }

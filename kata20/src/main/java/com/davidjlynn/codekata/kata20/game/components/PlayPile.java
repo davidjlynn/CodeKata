@@ -10,8 +10,8 @@ import lombok.Getter;
 
 @Getter
 public class PlayPile {
-  private List<Card> unflippedCards = new ArrayList<>();
-  private List<Card> flippedCards = new ArrayList<>();
+  private final List<Card> unflippedCards = new ArrayList<>();
+  private final List<Card> flippedCards = new ArrayList<>();
 
   public void flipCard() {
     Card card = unflippedCards.get(unflippedCards.size() - 1);

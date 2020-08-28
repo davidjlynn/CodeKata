@@ -13,7 +13,7 @@ public class FinishedPile {
 
   private final Integer CARDS_PER_SUIT = CardNumber.values().length;
 
-  private List<Card> cards = new ArrayList<>();
+  private final List<Card> cards = new ArrayList<>();
 
   public Boolean hasAllCards() {
     return cards.size() == CARDS_PER_SUIT;
