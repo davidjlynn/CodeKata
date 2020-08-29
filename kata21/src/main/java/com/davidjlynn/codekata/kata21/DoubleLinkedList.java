@@ -9,7 +9,7 @@ public class DoubleLinkedList implements KataList {
     if (firstNode != null) {
       DoubleLinkedNode currentNode = firstNode;
       while (currentNode != null) {
-        if (currentNode.value().equals(value)) {
+        if (currentNode.getValue().equals(value)) {
           return currentNode;
         }
         currentNode = currentNode.getNextNode();
@@ -26,7 +26,7 @@ public class DoubleLinkedList implements KataList {
     DoubleLinkedNode currentNode = firstNode;
     int index = 0;
     while (currentNode != null) {
-      valuesArray[index] = currentNode.value();
+      valuesArray[index] = currentNode.getValue();
 
       index++;
       currentNode = currentNode.getNextNode();
@@ -82,7 +82,15 @@ public class DoubleLinkedList implements KataList {
     if (firstNode == null) {
       return null;
     } else {
-      return firstNode.getLastNode();
+      DoubleLinkedNode currentNode = firstNode;
+      while (currentNode != null) {
+        DoubleLinkedNode nextNode = currentNode.getNextNode();
+        if (nextNode == null){
+          return currentNode;
+        }
+        currentNode = currentNode.getNextNode();
+      }
+      throw new IllegalStateException("There should have been a last node");
     }
   }
 

@@ -6,24 +6,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @RequiredArgsConstructor
+@Getter
 public class DoubleLinkedNode implements KataNode {
 
   @NonNull private final String value;
 
-  @Getter @Setter private DoubleLinkedNode previousNode;
+  @Setter private DoubleLinkedNode previousNode;
 
-  @Getter @Setter private DoubleLinkedNode nextNode;
-
-  @Override
-  public String value() {
-    return value;
-  }
-
-  public DoubleLinkedNode getLastNode() {
-    if (nextNode == null) {
-      return this;
-    } else {
-      return nextNode.getLastNode();
-    }
-  }
+  @Setter private DoubleLinkedNode nextNode;
 }

@@ -6,22 +6,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @RequiredArgsConstructor
+@Getter
 public class SingleLinkedNode implements KataNode {
 
   @NonNull private final String value;
 
-  @Getter @Setter private SingleLinkedNode nextNode;
-
-  @Override
-  public String value() {
-    return value;
-  }
-
-  public SingleLinkedNode getLastNode() {
-    if (nextNode == null) {
-      return this;
-    } else {
-      return nextNode.getLastNode();
-    }
-  }
+  @Setter private SingleLinkedNode nextNode;
 }

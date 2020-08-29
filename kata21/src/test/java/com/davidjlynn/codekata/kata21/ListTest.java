@@ -24,11 +24,11 @@ public class ListTest {
 
     assertNull(list.find("fred"));
     list.add("fred");
-    assertEquals("fred", list.find("fred").value());
+    assertEquals("fred", list.find("fred").getValue());
     assertNull(list.find("wilma"));
     list.add("wilma");
-    assertEquals("fred", list.find("fred").value());
-    assertEquals("wilma", list.find("wilma").value());
+    assertEquals("fred", list.find("fred").getValue());
+    assertEquals("wilma", list.find("wilma").getValue());
     assertArrayEquals(new String[] {"fred", "wilma"}, list.values());
 
     list = listSupplier.get();
