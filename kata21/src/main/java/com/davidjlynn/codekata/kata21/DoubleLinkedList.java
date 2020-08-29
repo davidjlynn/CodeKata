@@ -1,15 +1,13 @@
 package com.davidjlynn.codekata.kata21;
 
-import lombok.NonNull;
+public class DoubleLinkedList implements KataList {
 
-public class SingleLinkedList implements KataList {
-
-  private SingleLinkedNode firstNode;
+  private DoubleLinkedNode firstNode;
 
   @Override
   public KataNode find(String value) {
     if (firstNode != null) {
-      SingleLinkedNode currentNode = firstNode;
+      DoubleLinkedNode currentNode = firstNode;
       while (currentNode != null) {
         if (currentNode.value().equals(value)) {
           return currentNode;
@@ -25,7 +23,7 @@ public class SingleLinkedList implements KataList {
     int count = size();
     String[] valuesArray = new String[count];
 
-    SingleLinkedNode currentNode = firstNode;
+    DoubleLinkedNode currentNode = firstNode;
     int index = 0;
     while (currentNode != null) {
       valuesArray[index] = currentNode.value();
@@ -39,31 +37,39 @@ public class SingleLinkedList implements KataList {
 
   @Override
   public void add(String value) {
-    SingleLinkedNode node = new SingleLinkedNode(value);
+    DoubleLinkedNode node = new DoubleLinkedNode(value);
     if (firstNode == null) {
       firstNode = node;
     } else {
-      SingleLinkedNode lastNode = getLastNode();
+      DoubleLinkedNode lastNode = getLastNode();
       lastNode.setNextNode(node);
+      node.setPreviousNode(lastNode);
     }
   }
 
   @Override
-  public void delete(@NonNull KataNode node) {
+  public void delete(KataNode node) {
     if (firstNode == null) {
       return;
     }
 
     if (firstNode == node) {
       firstNode = firstNode.getNextNode();
+      if (firstNode != null) {
+        firstNode.setPreviousNode(null);
+      }
       return;
     }
 
-    SingleLinkedNode previousNode = firstNode;
-    SingleLinkedNode currentNode = firstNode.getNextNode();
+    DoubleLinkedNode previousNode = firstNode;
+    DoubleLinkedNode currentNode = firstNode.getNextNode();
     while (currentNode != null) {
       if (currentNode == node) {
-        previousNode.setNextNode(currentNode.getNextNode());
+        DoubleLinkedNode nextNode = currentNode.getNextNode();
+        if (nextNode != null) {
+          nextNode.setPreviousNode(previousNode);
+        }
+        previousNode.setNextNode(nextNode);
         return;
       }
 
@@ -72,7 +78,7 @@ public class SingleLinkedList implements KataList {
     }
   }
 
-  public SingleLinkedNode getLastNode() {
+  public DoubleLinkedNode getLastNode() {
     if (firstNode == null) {
       return null;
     } else {
@@ -85,7 +91,7 @@ public class SingleLinkedList implements KataList {
       return 0;
     } else {
       int count = 0;
-      SingleLinkedNode currentNode = firstNode;
+      DoubleLinkedNode currentNode = firstNode;
       while (currentNode != null) {
         count++;
         currentNode = currentNode.getNextNode();

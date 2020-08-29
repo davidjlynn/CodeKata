@@ -14,6 +14,11 @@ public class ListTest {
     testList(SingleLinkedList::new);
   }
 
+  @Test
+  public void doubleLinkedTest() {
+    testList(DoubleLinkedList::new);
+  }
+
   private void testList(Supplier<KataList> listSupplier) {
     KataList list = listSupplier.get();
 
