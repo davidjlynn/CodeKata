@@ -12,6 +12,7 @@
         <module name="code-kata.kata06.main" />
         <module name="code-kata.kata20.main" />
         <module name="code-kata.kata21.main" />
+        <module name="code-kata.kata03.main" />
         <module name="code-kata.kata19.main" />
       </profile>
     </annotationProcessing>

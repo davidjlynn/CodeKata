@@ -79,7 +79,7 @@ public class SingleLinkedList implements KataList {
       SingleLinkedNode currentNode = firstNode;
       while (currentNode != null) {
         SingleLinkedNode nextNode = currentNode.getNextNode();
-        if (nextNode == null){
+        if (nextNode == null) {
           return currentNode;
         }
         currentNode = currentNode.getNextNode();

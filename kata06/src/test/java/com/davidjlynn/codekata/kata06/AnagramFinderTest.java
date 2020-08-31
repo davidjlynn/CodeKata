@@ -1,18 +1,17 @@
 package com.davidjlynn.codekata.kata06;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
 
 public class AnagramFinderTest {
 
-  private AnagramFinder anagramFinder = new AnagramFinder();
+  private final AnagramFinder anagramFinder = new AnagramFinder();
 
   @Test
   public void loadWordList_ok() throws IOException, URISyntaxException {
